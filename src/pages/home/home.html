@@ -1,10 +1,89 @@
 <ion-header>
     <ion-navbar>
-        <ion-title>Home</ion-title>
+        <ion-title>Vendas</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="adicionarVenda()">
+                <ion-icon name="cart"></ion-icon>
+            </button>
+        </ion-buttons>
     </ion-navbar>
+    <ion-grid>
+        <ion-row>
+            <ion-col col-6>
+                <p class="payment-method">Cartão</p>
+                <p class="payment-total"><span>R$</span> 250,00</p>
+            </ion-col>
+            <ion-col col-6>
+                <p class="payment-method">Dinheiro</p>
+                <p class="payment-total"><span>R$</span> 250,00</p>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-list-header>
+        Vendas
+    </ion-list-header>
 </ion-header>
 
-<ion-content padding>
-    <h4>Vendas do dia: </h4>
-    
+<ion-content>
+    <ion-list>
+        <button ion-item>
+            <ion-avatar item-start>
+                B
+            </ion-avatar>
+            <h2>Bolsa Estela McCartney</h2>
+            <p>Ana Paula</p>
+            <p>Lethycia Lopes</p>
+            <p>R$ 140,00 - Cartão de Crédito</p>
+        </button>
+
+        <button ion-item>
+            <ion-avatar item-start>
+                B
+            </ion-avatar>
+            <h2>Bolsa Estela McCartney</h2>
+            <p>Ana Paula</p>
+            <p>Lethycia Lopes</p>
+            <p>R$ 140,00 - Cartão de Crédito</p>
+        </button>
+
+        <button ion-item>
+            <ion-avatar item-start>
+                B
+            </ion-avatar>
+            <h2>Bolsa Estela McCartney</h2>
+            <p>Ana Paula</p>
+            <p>Lethycia Lopes</p>
+            <p>R$ 140,00 - Cartão de Crédito</p>
+        </button>
+
+        <button ion-item>
+            <ion-avatar item-start>
+                B
+            </ion-avatar>
+            <h2>Bolsa Estela McCartney</h2>
+            <p>Ana Paula</p>
+            <p>Lethycia Lopes</p>
+            <p>R$ 140,00 - Cartão de Crédito</p>
+        </button>
+
+        <button ion-item>
+            <ion-avatar item-start>
+                B
+            </ion-avatar>
+            <h2>Bolsa Estela McCartney</h2>
+            <p>Ana Paula</p>
+            <p>Lethycia Lopes</p>
+            <p>R$ 140,00 - Cartão de Crédito</p>
+        </button>
+
+        <button ion-item>
+            <ion-avatar item-start>
+                B
+            </ion-avatar>
+            <h2>Bolsa Estela McCartney</h2>
+            <p>Ana Paula</p>
+            <p>Lethycia Lopes</p>
+            <p>R$ 140,00 - Cartão de Crédito</p>
+        </button>
+    </ion-list>
 </ion-content>

@@ -1,0 +1,40 @@
+page-registrar-venda {
+    .product-item {
+        display: flex;
+        flex-direction: column;
+        background-color: rgba(0, 0, 0, .06);
+        padding: 10px;
+        border-radius: 20px;
+        justify-content: center;
+
+        .product-general {
+            display: flex;
+            flex-direction: row;
+
+            .product-category {
+                width: 30%;
+                padding: 10px;
+                span {
+                    display: inline-flex;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: map-get($map: $colors, $key: primary);
+                    color: white;
+                    padding: 20px;
+                    border-radius: 50%;
+                    font-size: 25px;
+                    font-weight: bold;
+                    width: 100%;
+
+                }
+            }
+            .product-info {
+                width: 70%;
+                padding: 10px;
+            }
+        }
+        .product-options {
+            border-top: 2px solid rgba(0, 0, 0, 0.05);
+        }
+    }
+}

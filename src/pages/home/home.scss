@@ -1,3 +1,41 @@
 page-home {
+    p {
+        margin:0;
+    }
+    
+    ion-avatar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f960b3;
+        border-radius: 50%;
+        color: white;
+        font-weight: bold;
+        font-size: 25px;
+    }
 
+    ion-row {
+        ion-col {
+            padding: 10px 20px !important;
+
+            .payment-method {
+                font-weight: bold;
+                color: map-get($map: $colors, $key: primary-d);
+                margin-bottom: 5px;
+            }
+
+            .payment-total {
+                font-size: 20px;
+
+                span {
+                    color: rgba(0,0,0, .5);
+                    font-size: 13px;
+                }
+            }
+
+            &:first-child {
+                border-right: 1px solid rgba(0,0,0, .1);
+            }    
+        }
+    }
 }

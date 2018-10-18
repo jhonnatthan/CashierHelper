@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
+import { RegistrarVendaPage } from '../registrar-venda/registrar-venda';
 
 @Component({
     selector: 'page-home',
@@ -9,13 +10,17 @@ export class HomePage {
 
     vendas: any = [];
 
-
-    constructor(public navCtrl: NavController) {
+    constructor(public navCtrl: NavController,
+        public modalCtrl: ModalController) {
 
     }
 
     ionViewDidLoad() {
         console.log('component init');
+    }
+
+    adicionarVenda() {
+        this.navCtrl.push(RegistrarVendaPage)
     }
 
 }

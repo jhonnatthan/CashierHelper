@@ -13,6 +13,8 @@ import { ClientesPage } from '../pages/clientes/clientes';
 import { ProdutosPage } from '../pages/produtos/produtos';
 import { MenuPage } from '../pages/menu/menu';
 import { StorageProvider } from '../providers/storage/storage';
+import { RegistrarVendaPage } from '../pages/registrar-venda/registrar-venda';
+import { PesquisaPage } from '../pages/pesquisa/pesquisa';
 
 @NgModule({
     declarations: [
@@ -22,7 +24,9 @@ import { StorageProvider } from '../providers/storage/storage';
         BuscaPage,
         ClientesPage,
         ProdutosPage,
-        MenuPage
+        MenuPage,
+        RegistrarVendaPage,
+        PesquisaPage
     ],
     imports: [
         BrowserModule,
@@ -36,13 +40,15 @@ import { StorageProvider } from '../providers/storage/storage';
         BuscaPage,
         ClientesPage,
         ProdutosPage,
-        MenuPage
+        MenuPage,
+        RegistrarVendaPage,
+        PesquisaPage
     ],
     providers: [
         StatusBar,
         SplashScreen,
         { provide: ErrorHandler, useClass: IonicErrorHandler },
-    StorageProvider
+        StorageProvider
     ]
 })
 export class AppModule { }
