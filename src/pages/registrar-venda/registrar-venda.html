@@ -12,25 +12,40 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
 
-    <div class="product-item">
-        <div class="product-general">
-            <div class="product-info">
-                <div class="product-name">
-                    <h2>Bolsa Stylus</h2>
-                </div>
-                <div class="product-value">
-                    <div class="product-price"><span>R$</span> 1.250,00</div>
-                    <div class="product-qty">
-                        <button ion-button small>+</button>
-                        <span class="number">0</span>
-                        <button ion-button small>-</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <ion-list>
+        <ion-list-header>
+            Produtos
+        </ion-list-header>
+        <button *ngFor="let produto of produtos; let index = index" ion-item class="product" (click)="menuProduto(index)" >
+            <span>{{produto.name}}</span><span>{{produto.price | currency: 'BRL'}}</span><span>{{produto.quantity}} un</span>
+        </button>
+    </ion-list>
+
+    <ion-list>
+        <ion-list-header>
+            Metodos de pagamento
+        </ion-list-header>
+        <button ion-item class="product" (click)="menuProduto()">
+            <span>Cartão de Crédito</span><span>R$ 150,00</span>
+        </button>
+        <button ion-item class="product" (click)="menuProduto()">
+            <span>Dinheiro</span><span>R$ 100,00</span>
+        </button>
+        <ion-item class="product">
+            <span>A pagar</span><span>{{total | currency: 'BRL'}}</span>
+        </ion-item>
+    </ion-list>
+
+    <ion-list>
+        <ion-list-header>
+            Observações:
+        </ion-list-header>
+        <button ion-item class="product" (click)="menuProduto()">
+            <p>A cliente solicitou um produto diferente</p>
+        </button>
+    </ion-list>
 
 </ion-content>
 

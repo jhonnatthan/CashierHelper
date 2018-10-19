@@ -1,5 +1,7 @@
 {
   "name": "CashierHelper",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }
