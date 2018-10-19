@@ -1,0 +1,56 @@
+ion-tabs{
+
+    ion-icon, .tab-button-text{
+        color:#666 !important;
+    }
+
+    .tab-button[aria-selected=true]{
+        ion-icon, .tab-button-text{
+            color:#e65100 !important;
+        }
+    }
+
+    .tabbar{
+        background: #FFF !important;
+    }
+
+    a:nth-child(2){
+        margin-right: 35px;
+    }
+
+    a:nth-child(3){
+        margin-left: 35px;
+    }
+}
+
+button.add{
+    
+        background: #e65100 !important;
+        border-radius: 100%;
+        width: 71px !important;
+        height: 70px !important;
+        position: absolute;
+        color: #FFF !important;
+        bottom: -2px;
+        border:3px #FFF solid;
+        z-index: 999;
+        
+        ion-icon{
+            color: #FFF !important;
+            font-size: 4.2em !important;
+            color: #FFF;
+            line-height: .6 !important;
+        }
+    
+}
+
+.platform-android ion-tabs{
+    button.add{
+        left: 50%;
+        transform: translateX(-50%);
+        ion-icon{
+            font-weight: normal;
+            font-size: 3em !important;
+        }
+    }
+}
