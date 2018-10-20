@@ -16,39 +16,60 @@
 
     <ion-list>
         <ion-list-header>
+            Cliente:
+        </ion-list-header>
+
+        <button ion-item *ngIf="cliente" ion-item class="product" (click)="menuCliente()">
+            {{cliente.name}}
+        </button>
+        <ion-item *ngIf="!cliente">
+            <p>* Adicione um cliente *</p>
+        </ion-item>
+    </ion-list>
+
+    <ion-list>
+        <ion-list-header>
             Produtos
         </ion-list-header>
         <button *ngFor="let produto of produtos; let index = index" ion-item class="product" (click)="menuProduto(index)" >
             <span>{{produto.name}}</span><span>{{produto.price | currency: 'BRL'}}</span><span>{{produto.quantity}} un</span>
         </button>
+        <ion-item *ngIf="produtos.length == 0">
+            <p>* Adicione um produto *</p>
+        </ion-item>
     </ion-list>
 
     <ion-list>
         <ion-list-header>
             Metodos de pagamento
         </ion-list-header>
-        <button ion-item class="product" (click)="menuProduto()">
-            <span>Cartão de Crédito</span><span>R$ 150,00</span>
+        <button *ngFor="let pagamento of pagamentos; let index = index" ion-item class="product">
+            <span>{{pagamento.name}}</span><span>{{pagamento.value | currency: 'BRL'}}</span>
         </button>
-        <button ion-item class="product" (click)="menuProduto()">
-            <span>Dinheiro</span><span>R$ 100,00</span>
-        </button>
-        <ion-item class="product">
+        <ion-item *ngIf="pagamentos.length == 0">
+            <p>* Adicione um método de pagamento *</p>
+        </ion-item>
+        <ion-item class="product" *ngIf="produtos.length > 0">
             <span>A pagar</span><span>{{total | currency: 'BRL'}}</span>
         </ion-item>
     </ion-list>
+
 
     <ion-list>
         <ion-list-header>
             Observações:
         </ion-list-header>
-        <button ion-item class="product" (click)="menuProduto()">
+
+        <!-- <button ion-item class="product" (click)="menuProduto()">
             <p>A cliente solicitou um produto diferente</p>
-        </button>
+        </button> -->
+        <ion-item>
+            <p>* Adicione uma observação *</p>
+        </ion-item>
     </ion-list>
 
 </ion-content>
 
 <ion-footer>
-
+    <button ion-button full large color="primary">Salvar</button>
 </ion-footer>

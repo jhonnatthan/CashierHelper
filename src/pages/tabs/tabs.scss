@@ -6,7 +6,7 @@ ion-tabs{
 
     .tab-button[aria-selected=true]{
         ion-icon, .tab-button-text{
-            color:#e65100 !important;
+            color: map-get($colors, primary) !important;
         }
     }
 
@@ -24,30 +24,32 @@ ion-tabs{
 }
 
 button.add{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 50%;
+    transform: translateX(-50%);
+    background: map-get($colors, primary) !important;
+    border-radius: 100%;
+    width: 60px !important;
+    height: 60px !important;
+    position: absolute;
+    color: #FFF !important;
+    bottom: -2px;
+    border:3px #FFF solid;
+    z-index: 999;
     
-        background: #e65100 !important;
-        border-radius: 100%;
-        width: 71px !important;
-        height: 70px !important;
-        position: absolute;
+    ion-icon{
         color: #FFF !important;
-        bottom: -2px;
-        border:3px #FFF solid;
-        z-index: 999;
-        
-        ion-icon{
-            color: #FFF !important;
-            font-size: 4.2em !important;
-            color: #FFF;
-            line-height: .6 !important;
-        }
+        font-size: 4.2em !important;
+        color: #FFF;
+        line-height: .6 !important;
+    }
     
 }
 
 .platform-android ion-tabs{
     button.add{
-        left: 50%;
-        transform: translateX(-50%);
         ion-icon{
             font-weight: normal;
             font-size: 3em !important;

@@ -4,7 +4,7 @@
             {{(title) ? title : 'Lista'}}
         </ion-title>
         <ion-buttons start>
-            <button ion-button (click)="this.viewCtrl.dismiss()">
+            <button ion-button (click)="this.viewCtrl.dismiss(false)">
                 <span ion-text color="light" showWhen="ios">Fechar</span>
                 <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
             </button>

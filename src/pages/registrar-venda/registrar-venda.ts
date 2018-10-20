@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ActionSheetController, AlertController, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ActionSheetController, AlertController, ModalController, Searchbar } from 'ionic-angular';
 import { PesquisaPage } from '../pesquisa/pesquisa';
+import { text } from '@angular/core/src/render3/instructions';
 
 @Component({
     selector: 'page-registrar-venda',
@@ -8,6 +9,7 @@ import { PesquisaPage } from '../pesquisa/pesquisa';
 })
 export class RegistrarVendaPage {
 
+    cliente: any;
     produtos: any = [];
     pagamentos: any = [];
     observacoes: any = [];
@@ -30,6 +32,13 @@ export class RegistrarVendaPage {
             enableBackdropDismiss: true,
             buttons: [
                 {
+                    text: 'Cliente',
+                    icon: 'person',
+                    handler: () => {
+                        this.selecionaCliente();
+                    }
+                },
+                {
                     text: 'Produto',
                     icon: 'basket',
                     handler: () => {
@@ -38,7 +47,23 @@ export class RegistrarVendaPage {
                 },
                 {
                     text: 'Pagamento',
-                    icon: 'cash'
+                    icon: 'cash',
+                    handler: () => {
+                        if (this.produtos.length > 0) {
+                            this.selecionaPagamento('add');
+                        } else {
+                            this.alertCtrl.create({
+                                title: 'Erro',
+                                message: 'Registre um produto primeiro!',
+                                buttons: [
+                                    {
+                                        text: 'Ok'
+                                    }
+                                ]
+                            }).present();
+                        }
+
+                    }
                 },
                 {
                     text: 'Observação',
@@ -52,6 +77,8 @@ export class RegistrarVendaPage {
         }).present();
     }
 
+
+    // Produto
     menuProduto = (index) => {
         let produto = this.produtos[index];
         this.actionSheetCtrl.create({
@@ -85,7 +112,7 @@ export class RegistrarVendaPage {
         }).present();
     }
 
-     alterarQuantidade = async (produto) => {
+    alterarQuantidade = async (produto) => {
         let quantidade = await this.alertValor('Bolsa Stylus', 'Quantidade:', 'quantidade', 'tel');
         produto.quantity = quantidade;
         this.calcularValor();
@@ -118,33 +145,143 @@ export class RegistrarVendaPage {
         });
 
         produto.onDidDismiss(async data => {
-            let produto = data;
 
-            if (event == 'add') {
-                let preco = await this.alertValor(produto.name, 'Valor: ', 'valor', 'tel');
-                produto.price = preco;
-                this.produtos.push(produto);
-            } else if (event == 'update') {
-                let preco = await this.alertValor(produto.name, 'Valor: ', 'valor', 'tel');
-                produto.price = preco;
-                this.produtos[index] = produto;
+            if (data) {
+                let produto = data;
+
+                if (event == 'add') {
+                    let preco = await this.alertValor(produto.name, 'Valor: ', 'valor', 'tel');
+                    produto.price = preco;
+                    this.produtos.push(produto);
+                } else if (event == 'update') {
+                    let preco = await this.alertValor(produto.name, 'Valor: ', 'valor', 'tel');
+                    produto.price = preco;
+                    this.produtos[index] = produto;
+                }
+
+                this.calcularValor();
             }
 
-            this.calcularValor();
         });
 
         produto.present();
     }
-    
+
     removeProduto = (_produto) => {
         this.produtos = this.produtos.filter(produto => produto.id != _produto.id);
         this.calcularValor();
     }
 
+    // Cliente
+
+    selecionaCliente = () => {
+        let cliente = this.modalCtrl.create(PesquisaPage, {
+            title: 'Clientes',
+            data: [
+                {
+                    id: 1,
+                    name: 'Ana Paula',
+                }
+            ],
+            Searchbar: true,
+
+        });
+
+        cliente.onDidDismiss(async data => {
+            if (data) {
+                this.cliente = data;
+            }
+        });
+
+        cliente.present();
+    }
+
+    menuCliente = () => {
+        let cliente = this.cliente;
+        this.actionSheetCtrl.create({
+            title: 'Menu do cliente',
+            enableBackdropDismiss: true,
+            buttons: [
+                {
+                    text: 'Alterar cliente',
+                    handler: () => {
+                        this.selecionaCliente();
+                    }
+                },
+                {
+                    text: 'Remover',
+                    role: 'destructive',
+                    handler: () => {
+                        this.removeCliente(cliente);
+                    }
+                },
+                {
+                    text: 'Cancelar',
+                    role: 'cancel'
+                }
+            ]
+        }).present();
+    }
+
+    removeCliente = (cliente) => {
+        this.cliente = undefined;
+    }
+
+    // Pagamento
+    selecionaPagamento = (event, index?) => {
+        let pagamento = this.modalCtrl.create(PesquisaPage, {
+            title: 'Pagamento',
+            data: [
+                {
+                    id: 1,
+                    name: 'Dinheiro',
+                },
+                {
+                    id: 2,
+                    name: 'Crédito',
+                },
+                {
+                    id: 3,
+                    name: 'Fiado',
+                },
+            ],
+            seachbar: true
+        });
+
+        pagamento.onDidDismiss(async data => {
+
+            if (data) {
+                let pagamento = data;
+
+                if (event == 'add') {
+                    let valor = await this.alertValor(pagamento.name, 'Valor: ', 'valor', 'tel');
+                    pagamento.value = valor;
+                    this.pagamentos.push(pagamento);
+                } else if (event == 'update') {
+                    let valor = await this.alertValor(pagamento.name, 'Valor: ', 'valor', 'tel');
+                    pagamento.value = valor;
+                    this.pagamentos[index] = pagamento;
+                }
+
+                this.calcularValor();
+            }
+
+        });
+
+        pagamento.present();
+    }
+
+
+    // Helpers
+
     calcularValor = () => {
         this.total = 0;
         this.produtos.forEach(produto => {
             this.total += (produto.price * produto.quantity);
+        });
+
+        this.pagamentos.forEach(pagamento => {
+            this.total -= pagamento.value;
         });
     }
 

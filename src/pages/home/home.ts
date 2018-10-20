@@ -19,8 +19,4 @@ export class HomePage {
         console.log('component init');
     }
 
-    adicionarVenda() {
-        this.navCtrl.push(RegistrarVendaPage)
-    }
-
 }
