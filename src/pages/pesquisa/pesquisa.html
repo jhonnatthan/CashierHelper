@@ -17,9 +17,9 @@
 </ion-header>
 
 <ion-content>
-
     <ion-list no-margin *ngIf="data; else noData">
-        <button ion-item *ngFor="let item of filteredData; let i = index" (click)="returnItem(item)" [ngClass]="{'actived': item == selected, 'first': i == 0}">{{item.name}}</button>
+        <button ion-item *ngFor="let item of filteredData; let i = index" (click)="returnItem(item)" [ngClass]="{'actived': item == selected, 'first': i == 0}">{{item.name}}
+        </button>
     </ion-list>
 
     <ng-template #noData>
@@ -27,4 +27,5 @@
             Não há nenhum registro
         </h3>
     </ng-template>
+
 </ion-content>

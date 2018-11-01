@@ -45,6 +45,12 @@ $colors: (
 
 $toolbar-background: map-get($map: $colors, $key: primary);
 
+ion-list-header {
+    ion-label {
+        font-weight: bold;
+        color: #000;
+    }
+}
 
 // App iOS Variables
 // --------------------------------------------------

@@ -98,10 +98,10 @@ export class RegistrarVendaPage {
                     }
                 },
                 {
-                    text: 'Remover',
+                    text: 'Remover produto',
                     role: 'destructive',
                     handler: () => {
-                        this.removeProduto(produto);
+                        this.removeProduto(index);
                     }
                 },
                 {
@@ -167,33 +167,50 @@ export class RegistrarVendaPage {
         produto.present();
     }
 
-    removeProduto = (_produto) => {
-        this.produtos = this.produtos.filter(produto => produto.id != _produto.id);
+    removeProduto = (index) => {
+        this.produtos.splice(index, 1);
+        this.pagamentos = [];
         this.calcularValor();
     }
 
     // Cliente
 
     selecionaCliente = () => {
-        let cliente = this.modalCtrl.create(PesquisaPage, {
-            title: 'Clientes',
-            data: [
+        this.actionSheetCtrl.create({
+            title: 'Seleciona uma opção',
+            buttons: [
                 {
-                    id: 1,
-                    name: 'Ana Paula',
+                    text: 'Novo',
+                    handler: () => {
+
+                    }
+                },
+                {
+                    text: 'Existente',
+                    handler: () => {
+                        let cliente = this.modalCtrl.create(PesquisaPage, {
+                            title: 'Clientes',
+                            data: [
+                                {
+                                    id: 1,
+                                    name: 'Ana Paula',
+                                }
+                            ],
+                            Searchbar: true,
+
+                        });
+
+                        cliente.onDidDismiss(async data => {
+                            if (data) {
+                                this.cliente = data;
+                            }
+                        });
+
+                        cliente.present();
+                    }
                 }
-            ],
-            Searchbar: true,
-
-        });
-
-        cliente.onDidDismiss(async data => {
-            if (data) {
-                this.cliente = data;
-            }
-        });
-
-        cliente.present();
+            ]
+        }).present();
     }
 
     menuCliente = () => {
@@ -209,7 +226,7 @@ export class RegistrarVendaPage {
                     }
                 },
                 {
-                    text: 'Remover',
+                    text: 'Remover cliente',
                     role: 'destructive',
                     handler: () => {
                         this.removeCliente(cliente);
@@ -271,6 +288,37 @@ export class RegistrarVendaPage {
         pagamento.present();
     }
 
+    menuPagamento = (index) => {
+        let pagamento = this.pagamentos[index];
+        this.actionSheetCtrl.create({
+            title: 'Menu de pagamento',
+            enableBackdropDismiss: true,
+            buttons: [
+                {
+                    text: 'Alterar método',
+                    handler: () => {
+                        this.selecionaPagamento('update', index);
+                    }
+                },
+                {
+                    text: 'Remover pagamento',
+                    role: 'destructive',
+                    handler: () => {
+                        this.removePagamento(index);
+                    }
+                },
+                {
+                    text: 'Cancelar',
+                    role: 'cancel'
+                }
+            ]
+        }).present();
+    }
+
+    removePagamento = (index) => {
+        this.pagamentos.splice(index, 1);
+        this.calcularValor();
+    }
 
     // Helpers
 
@@ -289,11 +337,12 @@ export class RegistrarVendaPage {
         return new Promise((resolve, reject) => {
             this.alertCtrl.create({
                 title: titulo,
-                message: message,
+                subTitle: message,
                 inputs: [
                     {
                         name: inputName,
                         type: inputType,
+                        label: inputName,
                         min: 1
                     }
                 ],

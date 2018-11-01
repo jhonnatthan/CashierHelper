@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, ViewController, Slides } from 'ionic-angular';
+import { ToggleGesture } from 'ionic-angular/umd/components/toggle/toggle-gesture';
 
 @Component({
     selector: 'page-pesquisa',
     templateUrl: 'pesquisa.html',
 })
 export class PesquisaPage {
-
     private title: any = null;
+
     private data: any = null;
     private filteredData: any = null;
     private repeater: any = null;

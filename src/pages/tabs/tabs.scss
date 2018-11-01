@@ -25,19 +25,19 @@ ion-tabs{
 
 button.add{
     display: flex;
-    justify-content: center;
-    align-items: center;
+    position: absolute;
     left: 50%;
     transform: translateX(-50%);
     background: map-get($colors, primary) !important;
     border-radius: 100%;
     width: 60px !important;
     height: 60px !important;
-    position: absolute;
     color: #FFF !important;
     bottom: -2px;
     border:3px #FFF solid;
     z-index: 999;
+    justify-content: center !important;
+    align-items: center !important;
     
     ion-icon{
         color: #FFF !important;
